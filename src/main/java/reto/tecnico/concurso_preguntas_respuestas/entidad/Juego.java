@@ -26,6 +26,6 @@ public class Juego {
     private Date Fecha_Juego;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Identificador_jugador")
+    @JoinColumn(name = "Identificador_Jugador")
     private Jugador jugador;
 }
