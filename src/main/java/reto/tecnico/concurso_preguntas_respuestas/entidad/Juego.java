@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class Juego {
     @Temporal(TemporalType.DATE)
     private Date Fecha_Juego;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "Identificador_jugador")
     private Jugador jugador;
 }
