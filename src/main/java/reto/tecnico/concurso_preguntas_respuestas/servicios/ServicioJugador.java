@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ServicioJugador {
 
-    Jugador CrearUsuario(Jugador jugador);
+    Jugador CrearJugador(Jugador jugador);
     Jugador BuscarJugador(Long id);
     Jugador ModificarJugador(Long id, Jugador jugador);
 }

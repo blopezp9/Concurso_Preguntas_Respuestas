@@ -15,7 +15,7 @@ public class ServicioJugadorImpl implements ServicioJugador {
     private final RepositorioJugador repositorioJugador;
 
     @Override
-    public Jugador CrearUsuario(Jugador jugador) {
+    public Jugador CrearJugador(Jugador jugador) {
 
         //Hay que validar si el usuario ya existe o no
         return repositorioJugador.save(jugador);

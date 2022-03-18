@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor @NoArgsConstructor @Builder
 public class Jugador {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Identificador_jugador;
     private String Nombre;
     private String Apellido;
