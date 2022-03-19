@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class ServicioPreguntaImpl implements ServicioPregunta {
 
     private final Repositorio_Pregunta repositorio_pregunta;
+    private final ServicioOpcion servicioOpcion;
 
     @Override
     public Pregunta CrearPregunta(Categoria categoria, int j) {
@@ -24,7 +25,7 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
         Pregunta pregunta = new Pregunta();
         System.out.println("Preguntas para la categoría " + j);
         while (n<5){
-            PreguntaPorCategoria(categoria);
+            PreguntaPorCategoria(categoria, n, j);
             n++;
         }
 
@@ -100,11 +101,12 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
         return pregunta;
     }
 
-    public Pregunta PreguntaPorCategoria(Categoria categoria){
+    public Pregunta PreguntaPorCategoria(Categoria categoria, int n, int j){
 
             Pregunta pregunta = new Pregunta();
             pregunta.setPregunta(PreguntaValidacion());
             pregunta.setCategoria(categoria);
+            servicioOpcion.CrearOpciones(pregunta, (n+1), j);
 
             return repositorio_pregunta.save(pregunta);
     }
@@ -121,7 +123,7 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
             for (int i=0;i<LstarPreguntas().size();i++) {
                 System.out.println("Pregunta "+LstarPreguntas().get(i).getIdentificador_Pregunta() +" "+ LstarPreguntas().get(i).getPregunta() + " " + LstarPreguntas().get(i).getCategoria().getNombre_Categoria());
             }
-            System.out.println("¿Quiere corregir alguna pregunta?. Ingrese 1 para corregir o ingrese 2 para seguir con la siguiente categoría");
+            System.out.println("¿Quiere corregir alguna pregunta?. Ingrese 1 para corregir o ingrese 2 para proseguir");
             pregunta_ = entradaEscaner.nextLine ();
             if (!String_int(pregunta_) || Objects.equals(pregunta_, "")){
                 System.out.printf("Por favor seleccione alguna de las opciones, no ingrese letras o espacios en blanco");

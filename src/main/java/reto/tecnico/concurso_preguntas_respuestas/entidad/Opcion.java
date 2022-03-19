@@ -17,10 +17,11 @@ public class Opcion {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long Identificador_Pregunta;
+    private Long Identificador_Opcion;
     private String opcion;
+    private String respuesta;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Identificador_Categoria")
+    @JoinColumn(name = "Identificador_Pregunta")
     private Pregunta pregunta;
 
 }
