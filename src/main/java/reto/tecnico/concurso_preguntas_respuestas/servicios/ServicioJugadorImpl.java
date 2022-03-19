@@ -101,7 +101,7 @@ public class ServicioJugadorImpl implements ServicioJugador {
                 if (String_int(nombre)){
                     System.out.println("No ingrese números en el campo nombre");
                 }
-        }while (nombre == null || String_int(nombre));
+        }while (nombre == "" || String_int(nombre));
 
         return nombre;
     }
@@ -118,7 +118,7 @@ public class ServicioJugadorImpl implements ServicioJugador {
             if (String_int(apellido)){
                 System.out.println("No ingrese números en el campo apellido");
             }
-        }while (apellido == null || String_int(apellido));
+        }while (apellido == "" || String_int(apellido));
 
         return apellido;
     }
