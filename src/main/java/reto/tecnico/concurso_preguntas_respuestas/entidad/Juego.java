@@ -17,6 +17,7 @@ import java.util.Date;
 public class Juego {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long Identificador_Juego;
     private String Nombre_Juego;
     private Integer Puntaje_Jugador;
