@@ -5,9 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.aspectj.bridge.IMessage;
+import org.hibernate.internal.CoreLogging;
+import org.springframework.lang.NonNull;
+
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,7 +21,6 @@ import java.util.List;
 @AllArgsConstructor @NoArgsConstructor @Builder
 public class Jugador {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Identificador_jugador;
     private String Nombre;
     private String Apellido;

@@ -1,14 +1,23 @@
 package reto.tecnico.concurso_preguntas_respuestas.controlador;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.jsse.JSSEUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import reto.tecnico.concurso_preguntas_respuestas.entidad.Jugador;
 import reto.tecnico.concurso_preguntas_respuestas.servicios.ServicioJugador;
 
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/jugador")
@@ -17,21 +26,16 @@ public class ControladorJugador {
 
     private final ServicioJugador servicioJugador;
 
-    @GetMapping
-    public ResponseEntity CrearJugador(Jugador jugador){
-        //jugador.setNombre("Bryan");
-        //jugador.setApellido("Lopez");
+    @PostMapping
+    @ResponseBody
+    @Valid
+    public ResponseEntity CrearJugador (Jugador jugador, BindingResult result){
 
-        System.out.println ("Por favor introduzca el nombre:");
-        String entradaTeclado = "";
-
-        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
-
-        entradaTeclado = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-        jugador.setNombre(entradaTeclado);
-        jugador.setApellido(entradaTeclado);
-        System.out.println(jugador.getApellido());
-        return new ResponseEntity(servicioJugador.CrearJugador(jugador), HttpStatus.CREATED);
+            jugador = new Jugador();
+            servicioJugador.CrearJugador(jugador);
+            return ResponseEntity.ok("Jugador creado con éxito");
 
     }
+
+
 }
