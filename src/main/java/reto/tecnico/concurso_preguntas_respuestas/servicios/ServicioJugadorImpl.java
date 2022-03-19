@@ -2,11 +2,10 @@ package reto.tecnico.concurso_preguntas_respuestas.servicios;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import reto.tecnico.concurso_preguntas_respuestas.entidad.Juego;
 import reto.tecnico.concurso_preguntas_respuestas.entidad.Jugador;
 import reto.tecnico.concurso_preguntas_respuestas.repositorio.RepositorioJugador;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 @Service
@@ -19,32 +18,10 @@ public class ServicioJugadorImpl implements ServicioJugador {
 
     @Override
     public Jugador CrearJugador(Jugador jugador) {
-        String id = "";
-        String nombre = "";
-        String apellido = "";
-        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
 
-        do {
-            System.out.println ("Por favor introduzca su identificación:");
-            id = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-            if (String_Longs(id) == -0L){
-                System.out.println("No ingrese letras, solo números");
-            }else {
-                if (BuscarJugador(String_Longs(id)) != null) {
-                    System.out.println("Este usuario ya existe");
-                }
-            }
-
-        }while (String_Longs(id) == -0L || BuscarJugador(String_Longs(id)) != null );
-        jugador.setIdentificador_jugador(String_Longs(id));
-
-        System.out.println ("Por favor introduzca el nombre:");
-        nombre = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-        jugador.setNombre(nombre);
-
-        System.out.println ("Por favor introduzca sus apellidos:");
-        apellido = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-        jugador.setApellido(apellido);
+        jugador.setIdentificador_jugador(IdValidacion());
+        jugador.setNombre(NombreValidacion());
+        jugador.setApellido(ApelldioValidacion());
 
         return repositorioJugador.save(jugador);
     }
@@ -79,4 +56,70 @@ public class ServicioJugadorImpl implements ServicioJugador {
         }
 
     }
+
+    public boolean String_int(String nombre){
+        int myint;
+        try{
+            myint = Integer.parseInt(nombre);
+            return true;
+
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Long IdValidacion(){
+        String id ="";
+        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+        do {
+            System.out.println ("Por favor introduzca su identificación:");
+            id = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+            if (String_Longs(id) == -0L){
+                System.out.println("No ingrese letras, solo números");
+            }else {
+                if (BuscarJugador(String_Longs(id)) != null) {
+                    System.out.println("Este usuario ya existe");
+                }
+            }
+
+        }while (String_Longs(id) == -0L || BuscarJugador(String_Longs(id)) != null );
+
+        return String_Longs(id);
+    }
+
+    public String NombreValidacion(){
+        String nombre = "";
+        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+        do {
+            System.out.println ("Por favor introduzca el nombre:");
+            nombre = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+            if (Objects.equals(nombre, "")){
+                System.out.println("No deje el campo nombre vacío");
+            }else
+                if (String_int(nombre)){
+                    System.out.println("No ingrese números en el campo nombre");
+                }
+        }while (nombre == null || String_int(nombre));
+
+        return nombre;
+    }
+
+    public String ApelldioValidacion(){
+        String apellido = "";
+        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+        do {
+            System.out.println ("Por favor introduzca el apellido:");
+            apellido = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+            if (Objects.equals(apellido, "")){
+                System.out.println("No deje el campo nombre vacío");
+            }else
+            if (String_int(apellido)){
+                System.out.println("No ingrese números en el campo apellido");
+            }
+        }while (apellido == null || String_int(apellido));
+
+        return apellido;
+    }
+
 }
