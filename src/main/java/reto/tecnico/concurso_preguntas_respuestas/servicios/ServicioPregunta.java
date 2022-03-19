@@ -8,7 +8,8 @@ import java.util.List;
 public interface ServicioPregunta {
 
     public Pregunta CrearPregunta(Categoria categoria);
-    public Pregunta ActualizarPregunta(Long id);
+    public Pregunta ActualizarPregunta(Long id, String pregunta);
     public List<Pregunta> LstarPreguntas();
+    public Pregunta BuscarPregunta(Long id);
 
 }

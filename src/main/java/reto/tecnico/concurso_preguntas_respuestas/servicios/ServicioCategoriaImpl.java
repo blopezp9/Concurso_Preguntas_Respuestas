@@ -14,7 +14,7 @@ import java.util.List;
 public class ServicioCategoriaImpl implements ServicioCategoria{
 
     private final Reposiotrio_Categoria reposiotrio_categoria;
-    private final Repositorio_Juego repositorio_juego;
+    private final ServicioPregunta pregunta;
 
     @Override
     public Categoria CrearCategoria(Juego juego) {
@@ -38,6 +38,7 @@ public class ServicioCategoriaImpl implements ServicioCategoria{
 
         categoria.setNombre_Categoria("Categoria " + (n+1));
         categoria.setJuego(juego);
+        pregunta.CrearPregunta(categoria);
 
         return reposiotrio_categoria.save(categoria);
 
