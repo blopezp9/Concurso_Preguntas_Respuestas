@@ -23,8 +23,7 @@ public class Juego {
     private Integer Puntaje_Jugador;
     private Integer Ronda;
     private String Estado;
-    @Temporal(TemporalType.DATE)
-    private Date Fecha_Juego;
+    private String Fecha_Juego;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "Identificador_Jugador")

@@ -14,6 +14,7 @@ public class ServicioJugadorImpl implements ServicioJugador {
 
 
     private final RepositorioJugador repositorioJugador;
+    private final ServicioJuego servicioJuego;
 
 
     @Override
@@ -22,7 +23,7 @@ public class ServicioJugadorImpl implements ServicioJugador {
         jugador.setIdentificador_jugador(IdValidacion());
         jugador.setNombre(NombreValidacion());
         jugador.setApellido(ApelldioValidacion());
-
+        servicioJuego.CrearJuego(jugador);
         return repositorioJugador.save(jugador);
     }
 
