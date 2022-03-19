@@ -13,14 +13,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Categoria {
+public class Respuesta {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long Identificador_Categoria;
-    private String Nombre_Categoria;
+    private Long Identificador_Respuesta;
+    private String Respuesta;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Identificador_Juego")
-    private Juego juego;
-
+    @JoinColumn(name = "Identificador_Pregunta")
+    private Pregunta pregunta;
 }
