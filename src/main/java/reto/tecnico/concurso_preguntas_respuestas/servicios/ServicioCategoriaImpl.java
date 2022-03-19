@@ -38,7 +38,7 @@ public class ServicioCategoriaImpl implements ServicioCategoria{
 
         categoria.setNombre_Categoria("Categoria " + (n+1));
         categoria.setJuego(juego);
-        pregunta.CrearPregunta(categoria);
+        pregunta.CrearPregunta(categoria, (n+1));
 
         return reposiotrio_categoria.save(categoria);
 

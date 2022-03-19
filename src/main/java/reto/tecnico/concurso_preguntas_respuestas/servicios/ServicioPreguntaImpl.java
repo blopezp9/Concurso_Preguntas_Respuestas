@@ -1,6 +1,7 @@
 package reto.tecnico.concurso_preguntas_respuestas.servicios;
 
 import lombok.AllArgsConstructor;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.stereotype.Service;
 import reto.tecnico.concurso_preguntas_respuestas.entidad.Categoria;
 import reto.tecnico.concurso_preguntas_respuestas.entidad.Pregunta;
@@ -17,23 +18,27 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
     private final Repositorio_Pregunta repositorio_pregunta;
 
     @Override
-    public Pregunta CrearPregunta(Categoria categoria) {
-
+    public Pregunta CrearPregunta(Categoria categoria, int j) {
+        int n=0;
         Pregunta pregunta = new Pregunta();
-        pregunta.setPregunta(PreguntaValidacion());
-        pregunta.setCategoria(categoria);
-        return repositorio_pregunta.save(pregunta);
+        System.out.println("Preguntas para la categoría " + j);
+        while (n<5){
+            PreguntaPorCategoria(categoria);
+            n++;
+        }
+        return pregunta;
     }
 
     @Override
     public Pregunta ActualizarPregunta(Long id, String preguntas) {
 
         Pregunta pregunta = new Pregunta();
+        int n = 0;
 
         if (BuscarPregunta(id) == null){
             System.out.println("Esta pregunta no existe");
         }else{
-            pregunta.setPregunta(PreguntaValidacion());
+               pregunta.setPregunta(PreguntaValidacion());
         }
         return repositorio_pregunta.save(pregunta);
     }
@@ -77,7 +82,14 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
         return pregunta;
     }
 
+    public Pregunta PreguntaPorCategoria(Categoria categoria){
 
+            Pregunta pregunta = new Pregunta();
+            pregunta.setPregunta(PreguntaValidacion());
+            pregunta.setCategoria(categoria);
+
+            return repositorio_pregunta.save(pregunta);
+    }
 
 
 }

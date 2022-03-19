@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ServicioPregunta {
 
-    public Pregunta CrearPregunta(Categoria categoria);
+    public Pregunta CrearPregunta(Categoria categoria, int j);
     public Pregunta ActualizarPregunta(Long id, String pregunta);
     public List<Pregunta> LstarPreguntas();
     public Pregunta BuscarPregunta(Long id);
