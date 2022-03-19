@@ -5,7 +5,7 @@ import reto.tecnico.concurso_preguntas_respuestas.entidad.Jugador;
 
 public interface ServicioJuego {
 
-    Juego CrearJuego(Jugador jugador);
-    Juego ConsultarHistorial(Long id);
-    Juego ActualizarJuego(Juego juego);
+    public Juego CrearJuego(Jugador jugador);
+    public Juego ConsultarHistorial(Long id);
+    public Juego ActualizarJuego(Juego juego);
 }
