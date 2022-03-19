@@ -20,12 +20,16 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
     @Override
     public Pregunta CrearPregunta(Categoria categoria, int j) {
         int n=0;
+
         Pregunta pregunta = new Pregunta();
         System.out.println("Preguntas para la categoría " + j);
         while (n<5){
             PreguntaPorCategoria(categoria);
             n++;
         }
+
+         ValidacionPregunta();
+
         return pregunta;
     }
 
@@ -37,8 +41,10 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
 
         if (BuscarPregunta(id) == null){
             System.out.println("Esta pregunta no existe");
+            return null;
         }else{
-               pregunta.setPregunta(PreguntaValidacion());
+               pregunta=BuscarPregunta(id);
+               pregunta.setPregunta(preguntas);
         }
         return repositorio_pregunta.save(pregunta);
     }
@@ -62,6 +68,18 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
         }
         catch (Exception e) {
             return false;
+        }
+    }
+
+    public int String_int2(String pregunta){
+        int myint;
+        try{
+            myint = Integer.parseInt(pregunta);
+            return myint;
+
+        }
+        catch (Exception e) {
+            return -1;
         }
     }
 
@@ -91,5 +109,38 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
             return repositorio_pregunta.save(pregunta);
     }
 
+    public void ValidacionPregunta(){
+
+        String pregunta_ = "";
+        String Pregunta2 = "";
+        String Pregunta3 = "";
+        Long e = 0L;
+        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+
+        do {
+            for (int i=0;i<LstarPreguntas().size();i++) {
+                System.out.println("Pregunta "+LstarPreguntas().get(i).getIdentificador_Pregunta() +" "+ LstarPreguntas().get(i).getPregunta() + " " + LstarPreguntas().get(i).getCategoria().getNombre_Categoria());
+            }
+            System.out.println("¿Quiere corregir alguna pregunta?. Ingrese 1 para corregir o ingrese 2 para seguir con la siguiente categoría");
+            pregunta_ = entradaEscaner.nextLine ();
+            if (!String_int(pregunta_) || Objects.equals(pregunta_, "")){
+                System.out.printf("Por favor seleccione alguna de las opciones, no ingrese letras o espacios en blanco");
+            }else
+                if (String_int2(pregunta_) > 2 || String_int2(pregunta_) < 1){
+                    System.out.println("Por favor seleccione unicamente 1 o 2");
+                }else{
+                    if(String_int2(pregunta_) == 1){
+                        System.out.println("Ingrese el número de la pregunta a corregir");
+                        Pregunta2 = entradaEscaner.nextLine ();
+                        e = (long) String_int2(Pregunta2);
+                        Pregunta3=PreguntaValidacion();
+                        ActualizarPregunta(e, Pregunta3);
+                            pregunta_="1";
+                    }
+
+                }
+
+        }while (!String_int(pregunta_) || Objects.equals(pregunta_, "") || (String_int2(pregunta_) > 2 || String_int2(pregunta_) < 1) || (String_int2(pregunta_) == 1));
+    }
 
 }
