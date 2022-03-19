@@ -18,22 +18,28 @@ public class ServicioCategoriaImpl implements ServicioCategoria{
 
     @Override
     public Categoria CrearCategoria(Juego juego) {
+
         int n = 0;
         Categoria categoria = new Categoria();
-
         while (n<5){
-            categoria.setNombre_Categoria("Categoria" + (n+1));
-            categoria.setJuego(juego);
-            reposiotrio_categoria.save(categoria);
+            GnerarCategoria(juego,n);
             n++;
         }
-
-
-        return reposiotrio_categoria.save(categoria);
+        return categoria;
     }
 
     @Override
     public List<Categoria> ListCategoria() {
         return null;
+    }
+
+    public Categoria GnerarCategoria(Juego juego, int n){
+        Categoria categoria = new Categoria();
+
+        categoria.setNombre_Categoria("Categoria " + (n+1));
+        categoria.setJuego(juego);
+
+        return reposiotrio_categoria.save(categoria);
+
     }
 }
