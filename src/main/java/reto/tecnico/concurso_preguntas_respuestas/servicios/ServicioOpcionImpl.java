@@ -28,7 +28,7 @@ public class ServicioOpcionImpl implements ServicioOpcion{
             n++;
         }
         ValidacionOpcion();
-        OpcionCorrecta(j);
+        OpcionCorrecta(j,i);
 
         return opcion;
     }
@@ -141,23 +141,21 @@ public class ServicioOpcionImpl implements ServicioOpcion{
         }while (!String_int(pregunta_) || Objects.equals(pregunta_, "") || (String_int2(pregunta_) > 2 || String_int2(pregunta_) < 1) || (String_int2(pregunta_) == 1));
     }
 
-    public void OpcionCorrecta(int j){
+    public void OpcionCorrecta(int j, int d){
         Opcion opcion = new Opcion();
         int x,z = 0;
         Long n = 0L;
         do {
             for (int i=0;i< LstarPciones().size();i++) {
-                if (LstarPciones().get(i).getPregunta().getIdentificador_Pregunta() == (long) j){
-                    System.out.println("Cuál de estas opciones es la correcta para la pregunta: " + LstarPciones().get(i).getPregunta().getPregunta());
-                    for (x=i;z< 4;x++) {
-                        System.out.println("Opcion: " + LstarPciones().get(x).getIdentificador_Opcion() + " " + LstarPciones().get(x).getOpcion());
-                        z++;
-                    }
+                if (LstarPciones().get(i).getPregunta().getIdentificador_Pregunta() == (long) j) {
+                    System.out.println("Cuál de las opciones mencionadas es la correcta para la pregunta: " + LstarPciones().get(i).getPregunta().getPregunta());
+
                     i = LstarPciones().size();
-                    n= (long) String_int2(ElijaOpcionCorrecta());
-                    opcion=ActualizarRespuesta(n,"CORRECTA");
+                    n = (long) String_int2(ElijaOpcionCorrecta());
+                    opcion = ActualizarRespuesta(n, "CORRECTA");
                 }
             }
+
         }while(opcion==null);
     }
 

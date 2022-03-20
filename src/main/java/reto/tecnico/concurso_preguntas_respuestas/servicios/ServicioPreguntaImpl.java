@@ -148,7 +148,7 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
     @Override
     public int Aleatorio (){
         int min = 1;
-        int max = 5;
+        int max = 3;
         int getRandomValue = 0;
         for(int i = min; i <=max; i++) {
             getRandomValue = (int) (Math.random()*(max-min)) + min;

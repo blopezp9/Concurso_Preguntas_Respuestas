@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ServicioCategoria {
 
-    Categoria CrearCategoria(Juego juego);
-    List<Categoria> ListCategoria();
+    public Categoria CrearCategoria(Juego juego);
+    public List<Categoria> ListCategoria();
+    public Categoria CategoriaExistente(Juego juego);
 }

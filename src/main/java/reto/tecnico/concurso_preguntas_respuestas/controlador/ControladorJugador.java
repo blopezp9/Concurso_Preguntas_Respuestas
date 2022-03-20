@@ -60,8 +60,6 @@ public class ControladorJugador {
     public void Opciones (){
 
         String pregunta1 = "";
-        String Pregunta2 = "";
-        String Pregunta3 = "";
         Jugador jugador = new Jugador();
 
         Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
@@ -81,6 +79,8 @@ public class ControladorJugador {
                 }else{
                     if (String_int2(pregunta1) == 2){
                         Opcion2();
+                    }else{
+                        Opcion3();
                     }
                 }
 
@@ -129,7 +129,7 @@ public class ControladorJugador {
                 jugador=servicioJugador.BuscarJugador((long) String_int2(pregunta1));
                 if (jugador!=null){
                     System.out.println("Bienvenido: " + jugador.getNombre());
-                    servicioJuego.CrearJuego(jugador);
+                    servicioJuego.EmpezarJuego(jugador);
                 }else{
                     System.out.println("Este usuario no existe");
                     Opciones();
