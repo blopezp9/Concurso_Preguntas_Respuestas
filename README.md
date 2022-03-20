@@ -54,3 +54,8 @@ correcta. (guarda los datos del jugador)
 ##
 ● Persistencia de datos: al finalizar el juego se debe guardar los datos del jugador como
 histórico del juego.  
+## Datos del desarrollador
+
+**Nombre:** Bryan López Parra
+
+**Correo:** blopezp0920@gmail.com
