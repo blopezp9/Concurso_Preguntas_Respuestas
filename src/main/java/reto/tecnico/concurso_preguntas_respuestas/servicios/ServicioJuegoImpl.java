@@ -38,7 +38,6 @@ public class ServicioJuegoImpl implements ServicioJuego{
                 System.out.println("Por favor no deje el campo vacío");
             }
         }while(Objects.equals(nombre, ""));
-        repositorio_juego.deleteAll();
         Juego juego = new Juego();
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
         juego.setNombre_Juego(nombre);
