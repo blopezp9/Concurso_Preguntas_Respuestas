@@ -145,4 +145,5 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
         }while (!String_int(pregunta_) || Objects.equals(pregunta_, "") || (String_int2(pregunta_) > 2 || String_int2(pregunta_) < 1) || (String_int2(pregunta_) == 1));
     }
 
+
 }
