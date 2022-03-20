@@ -10,6 +10,8 @@ import reto.tecnico.concurso_preguntas_respuestas.repositorio.Repositorio_Juego;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
+import java.util.Scanner;
 
 @Service
 @AllArgsConstructor
@@ -20,9 +22,20 @@ public class ServicioJuegoImpl implements ServicioJuego{
 
     @Override
     public Juego CrearJuego(Jugador jugador) {
+        String nombre = "";
+        Scanner entradaEscaner = new Scanner (System.in); //Creación de un objeto Scanner
+
+        do {
+            System.out.println ("Por favor introduzca el nombre del juego:");
+            nombre = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+            if (Objects.equals(nombre, "")){
+                System.out.println("Por favor no deje el campo vacío");
+            }
+        }while(Objects.equals(nombre, ""));
+
         Juego juego = new Juego();
         String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
-        juego.setNombre_Juego("Juego 1");
+        juego.setNombre_Juego(nombre);
         juego.setPuntaje_Jugador(0);
         juego.setRonda(1);
         juego.setEstado("Sin terminar");
@@ -47,4 +60,5 @@ public class ServicioJuegoImpl implements ServicioJuego{
         juego.setEstado(juegos.getEstado());
         return repositorio_juego.save(juego);
     }
+
 }

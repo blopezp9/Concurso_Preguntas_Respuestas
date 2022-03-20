@@ -145,5 +145,15 @@ public class ServicioPreguntaImpl implements ServicioPregunta {
         }while (!String_int(pregunta_) || Objects.equals(pregunta_, "") || (String_int2(pregunta_) > 2 || String_int2(pregunta_) < 1) || (String_int2(pregunta_) == 1));
     }
 
+    @Override
+    public int Aleatorio (){
+        int min = 1;
+        int max = 5;
+        int getRandomValue = 0;
+        for(int i = min; i <=max; i++) {
+            getRandomValue = (int) (Math.random()*(max-min)) + min;
+        }
+        return getRandomValue;
+    }
 
 }

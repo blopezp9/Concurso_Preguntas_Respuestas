@@ -11,5 +11,6 @@ public interface ServicioPregunta {
     public Pregunta ActualizarPregunta(Long id, String pregunta);
     public List<Pregunta> LstarPreguntas();
     public Pregunta BuscarPregunta(Long id);
+    public int Aleatorio();
 
 }
